@@ -20,7 +20,7 @@ model User {
   @@index([email])
 }
 
-model FoodVendor {
+model FoodPartner {
   id          String @id @default(cuid())
   name        String
   contactName String
@@ -29,9 +29,24 @@ model FoodVendor {
   imageUrl    String
   email       String @unique
   password    String
+  food        Food[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([email])
+}
+
+model Food {
+  id            String      @id @default(cuid())
+  name          String
+  video         String
+  foodPartnerId String
+  description   String
+  linkCount     Int         @default(0)
+  saveCount     Int         @default(0)
+  partner       FoodPartner @relation(fields: [foodPartnerId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
