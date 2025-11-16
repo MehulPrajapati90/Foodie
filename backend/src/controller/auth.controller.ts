@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { json, z } from "zod";
+import { z } from "zod";
 import type { Request, Response } from "express";
 import { client } from "../config/db.js";
 
@@ -15,7 +15,7 @@ const RegisterPartnerSchema = z.object({
     email: z.email("Not a valid email"),
     password: z.string("Password should be a valid string"),
     contactName: z.string("ContactName should be a valid string"),
-    phone: z.int("Phone should be a valid Phone no."),
+    phone: z.string("Phone should be a valid Phone no."),
     address: z.string("Name should be a valid string")
 })
 
@@ -62,7 +62,7 @@ export const registerUser = async (req: Request, res: Response) => {
             }
         });
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_KEY!, { expiresIn: "24h" });
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!, { expiresIn: "24h" });
 
         res.cookie("token", token);
 
@@ -219,7 +219,7 @@ export const regsiterFoodPartner = async (req: Request, res: Response) => {
             }
         });
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_KEY!, { expiresIn: "24h" });
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!, { expiresIn: "24h" });
 
         res.cookie("token", token);
 

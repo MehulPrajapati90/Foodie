@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/config/db.ts","./src/controller/auth.controller.ts","./src/middleware/auth.middleware.ts","./src/router/auth.router.ts","./src/router/food.router.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/config/db.ts","./src/controller/auth.controller.ts","./src/controller/food.controller.ts","./src/middleware/auth.middleware.ts","./src/middleware/food.middleware.ts","./src/router/auth.router.ts","./src/router/food.router.ts","./src/service/storage.services.ts"],"version":"5.9.3"}
